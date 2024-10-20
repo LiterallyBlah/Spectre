@@ -1,14 +1,14 @@
 # Spectre
 
-**Spectre** is a modular tool designed for web application reconnaissance and vulnerability analysis. It aims to integrate both browser-based interaction and external tools, such as Nikto and SQLmap, to provide comprehensive coverage of web application security testing.
+**Spectre** is a modular tool designed for web application reconnaissance and vulnerability analysis. It integrates browser-based interaction and link extraction capabilities to provide comprehensive coverage of web application security testing.
 
 ## Features
 
-- **SpectreCore**: The foundational module for handling browser sessions, authentication, and session management using tools like Playwright.
-- **Dynamic Crawling**: Discover endpoints within web applications, both authenticated and unauthenticated.
-- **Fuzzing Modules**: Automate fuzzing of input fields, headers, cookies, and more, with built-in session management.
-- **External Tool Integration**: Integrate with external security tools such as Nikto, SQLmap, and Burp Suite.
-- **Configurable Task Management**: Customise tasks via configuration files, defining inputs, expected outputs, and response analysis.
+- **SpectreCore**: The foundational module for handling browser sessions and authentication using Playwright.
+- **Dynamic Crawling**: Discover and extract links within web applications, both authenticated and unauthenticated.
+- **Interactive Session Management**: Maintain and interact with browser sessions over extended periods.
+- **LLM-Powered Link Extraction**: Utilise AI models to enhance link discovery and validation.
+- **Configurable Task Management**: Customise tasks via an interactive command-line interface.
 
 ## Installation
 
@@ -32,6 +32,14 @@
    playwright install
    ```
 
+5. Install Ollama and the required AI models (e.g., llama3.1, qwen2.5):
+   ```bash
+   # Install Ollama (follow instructions from https://ollama.ai/)
+   # Pull the required models
+   ollama pull llama3.1
+   ollama pull qwen2.5
+   ```
+
 ## Usage
 
 You can run **Spectre** through the main entry point:
@@ -40,36 +48,45 @@ You can run **Spectre** through the main entry point:
 python main.py
 ```
 
-Spectre will load the configuration files and execute the tasks defined in `tasks.yaml`. Further documentation on customising tasks and integrating external tools will be available as the toolset evolves.
+This will launch the Spectre Command Centre, where you can interact with the tool using various commands:
+
+- `help`: Show the help menu with available commands
+- `options`: Show available options
+- `start`: Start a new interactive session
+- `exit`: Exit the programme
+
+In an interactive session, you can use the following commands:
+- `navigate`: Navigate to a new URL
+- `extract`: Extract links from the current page
+- `exit`: Exit the interactive session
 
 ## Checklist of Progress
 
 ### Completed:
-- [x] **Core Folder Structure**: Basic folder structure and files for the `core` module.
-- [x] **Browser Session Management**: Initial setup for managing browser sessions using Playwright.
-- [x] **Authentication Handling**: Set up initial authentication and session maintenance with cookies/tokens.
-- [x] **Basic Configuration**: Set up basic configuration files, such as `tasks.yaml`.
+- [x] **Browser Interaction**: Implemented functionality to start browser
+- [x] **Navigation**: Implemented functionality to navigate to specified URLs
+- [x] **Link Extraction**: Implemented functionality to extract links from the current page
+- [x] **Core Folder Structure**: Set up basic folder structure and files for the `core` module.
 
 ### To Do:
-- [ ] **Task Management**: Implement task management to handle user-defined tasks from `tasks.yaml`.
-- [ ] **Session Continuity**: Build functionality to maintain sessions over extended periods.
-- [ ] **Initial Fuzzing Setup**: Set up input fuzzing for forms, headers, and URLs.
-- [ ] **External Tool Integration**: Begin integrating tools like Nikto and SQLmap.
-- [ ] **Crawling and Endpoint Discovery**: Build out crawling functionality to automatically discover and parse web pages.
+- [ ] **Browser Session Management**: Implement setup for managing browser sessions using Playwright.
+- [ ] **Authentication Handling**: Set up initial authentication and session maintenance with cookies/tokens.
+- [ ] **Interactive Command Interface**: Implement a user-friendly command-line interface for tool interaction.
+- [ ] **LLM Integration**: Integrate AI models (via Ollama) for enhanced link extraction and validation.
+- [ ] **Session Continuity**: Implement functionality to maintain sessions over extended periods.
 - [ ] **Advanced Fuzzing Modules**: Add optional fuzzing modules for headers, cookies, and custom parameters.
-- [ ] **Response Analysis**: Implement LLM-based or regex-driven response pattern analysis.
+- [ ] **External Tool Integration**: Begin integrating tools like Nikto and SQLmap.
+- [ ] **Response Analysis**: Implement more advanced response pattern analysis.
 - [ ] **Reporting System**: Set up output for results in JSON and HTML format.
 - [ ] **Test Suite**: Implement unit tests for all core functionalities.
 - [ ] **Documentation**: Provide detailed user and developer documentation for configuration and usage.
 
 ## Folder Structure
 
-- `core/`: The core functionality of **Spectre**, managing browser sessions, authentication, and task management.
-- `crawl/`: (Coming soon) Modules for dynamic crawling and endpoint discovery.
-- `fuzz/`: (Coming soon) Modules for input fuzzing, header fuzzing, and more.
-- `integrations/`: (Coming soon) Integrations with external tools like Nikto, SQLmap, and Burp Suite.
+- `core/`: The core functionality of **Spectre**, managing browser sessions and authentication.
+- `crawl/`: Modules for dynamic crawling and link extraction.
+- `llm/`: AI agents for link extraction and validation.
 - `output/`: Output directory for generated reports and logs.
-- `config/`: Configuration files such as `tasks.yaml` for defining the scope and structure of tasks.
 
 ## Future Development
 
@@ -79,6 +96,6 @@ This project is under active development, with additional modules and functional
 
 Contributions are welcome! Feel free to submit pull requests or open issues for any bugs or feature requests. Please ensure that your code adheres to the existing coding standards and is thoroughly tested before submission.
 
-## License
+## Licence
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT Licence. See the `LICENCE` file for more details.

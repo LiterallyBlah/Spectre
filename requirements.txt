@@ -1,0 +1,5 @@
+playwright
+pyyaml
+PyPDF2
+colorama
+ollama
